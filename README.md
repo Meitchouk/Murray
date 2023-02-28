@@ -1,17 +1,16 @@
 # Murray
 
-Este proyecto es un sistema cliente-servidor que utiliza C# como lenguaje de programación y SQL Server como gestor de bases de datos, y ha sido desarrollado a lo largo de las asignaturas de Base de Datos 1 y Base de Datos 2. 
+Este proyecto, llamado Murray, tiene un enfoque específico para empresas que manejen productos no perecederos, especialmente aquellas que se dedican a la venta de dispositivos electrónicos.
 
-Este proyecto es un sistema cliente-servidor desarrollado en C# y SQL Server que ha sido mejorado continuamente durante las asignaturas de Base de Datos 1 y Base de Datos 2. El sistema se ha estructurado modularmente para lograr una arquitectura más clara y organizada, y se ha separado en los siguientes módulos: Common, Connection, Models y Murray.
+Murray es un sistema cliente-servidor que utiliza C# como lenguaje de programación y SQL Server como gestor de bases de datos. Ha sido desarrollado a lo largo de las asignaturas de Base de Datos 1 y Base de Datos 2, y se ha mejorado continuamente para lograr una arquitectura clara y organizada.
 
-El módulo Common contiene funcionalidades que son comunes a todo el sistema, mientras que el módulo Connection se encarga de establecer la conexión con la base de datos. El módulo Models define los modelos de datos que se utilizan en el sistema, y el módulo Murray contiene la lógica de negocio específica del proyecto. La conexión a la base de datos también se realiza a través de procedimientos almacenados.
+El sistema se ha estructurado modularmente en los siguientes módulos: Common, Connection, Models y Murray. El módulo Common contiene funcionalidades comunes, mientras que el módulo Connection establece la conexión con la base de datos. El módulo Models define los modelos de datos y el módulo Murray contiene la lógica de negocio específica del proyecto. La conexión a la base de datos se realiza a través de procedimientos almacenados.
 
-Además, el sistema cuenta con un Data Warehouse estructurado en el modelo de estrella, compuesto por las tablas DIMFECHA, DIMCLIENTE, DIMEMPLEADO, DIMPRODUCTO y FACTVENTASPRODUCTOS. El modelo de estrella es un tipo de diseño de Data Warehouse que utiliza una tabla de hechos central que se relaciona con varias tablas de dimensiones, lo que permite una fácil navegación y análisis de los datos.
+El proyecto cuenta con un Data Warehouse estructurado en el modelo de estrella, compuesto por las tablas DIMFECHA, DIMCLIENTE, DIMEMPLEADO, DIMPRODUCTO y FACTVENTASPRODUCTOS. Este modelo permite una fácil navegación y análisis de los datos.
 
-Se han elaborado procedimientos almacenados para cada una de las tablas de la base de datos, incluyendo el CRUD de varias tablas, como Categoría, Compra, Contacto Jurídico, Departamento, Detalle de Compra, Detalle de Venta, Empleado, Garantías, Histórico de Producto, Municipio, Producto, Proveedor, Usuario y Venta.
+Para cada una de las tablas de la base de datos se han elaborado procedimientos almacenados, incluyendo el CRUD de varias tablas, como Categoría, Compra, Contacto Jurídico, Departamento, Detalle de Compra, Detalle de Venta, Empleado, Garantías, Histórico de Producto, Municipio, Producto, Proveedor, Usuario y Venta.
 
-Por último, el sistema cuenta con un Dashboard en Power BI que permite visualizar de forma interactiva la información del Data Warehouse. En resumen, el proyecto ha sido diseñado y mejorado de manera rigurosa y estructurada para lograr una alta calidad en la arquitectura, el manejo de datos y la interfaz de usuario.
-
+Por último, el sistema cuenta con un Dashboard en Power BI que permite visualizar de forma interactiva la información del Data Warehouse. En resumen, Murray ha sido diseñado y mejorado de manera rigurosa y estructurada para lograr una alta calidad en la arquitectura, el manejo de datos y la interfaz de usuario, con un enfoque específico para empresas que manejen productos no perecederos, principalmente en el rubro de la venta de dispositivos electrónicos.
 
 ## Diagrama de la base de datos 
 
