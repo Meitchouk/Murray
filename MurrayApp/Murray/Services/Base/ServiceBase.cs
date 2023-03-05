@@ -3,29 +3,27 @@ using System;
 
 namespace Murray.Services.Base
 {
-    /// <summary>
-    ///     Estructura base un servicio
-    /// </summary>
+    // Clase interna abstracta que representa la estructura base de un servicio
     internal abstract class ServiceBase : IDisposable
     {
-        #region Protected Fields
+        #region Campos Protegidos
 
-        /// <summary>
-        ///     Administrador de erroes
-        /// </summary>
+        // Campo protegido que almacena una instancia de la clase ErrorHandler, 
+        // la cual sirve como administrador de errores.
         protected readonly ErrorHandler Handler;
 
         #endregion
 
         /// <summary>
-        ///     Constructor
+        ///     Constructor que recibe una instancia de la clase ErrorHandler y establece el valor del campo Handler.
         /// </summary>
         protected ServiceBase(ErrorHandler handler)
         {
             Handler = handler;
         }
 
-        /// <inheritdoc cref="IDisposable.Dispose"/>
+        // Método abstracto que implementa la interfaz IDisposable y se encarga de liberar los recursos no 
+        // administrados utilizados por un objeto ServiceBase.
         public abstract void Dispose();
     }
 }

@@ -45,6 +45,10 @@ namespace Murray
         /// <summary>
         ///     Realiza todas las acciones para eliminar la sesion de usuario
         /// </summary>
+
+        // Método estático que se utiliza para remover la sesión actual del usuario
+        // Al ejecutar este método, se establece el valor de la propiedad "User" como "null"
+        // lo que significa que ya no habrá un usuario autenticado en la sesión.
         public static void RemoveSession()
         {
             User = null;

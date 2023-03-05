@@ -8,13 +8,13 @@ namespace Murray.Vistas.Contactos
 {
     public partial class BuscadorContactos : Buscador
     {
-        private readonly ErrorHandler Handler;
-        private readonly ContactosService Service;
+        private readonly ErrorHandler Handler; // Manejador de errores
+        private readonly ContactosService Service; // Servicio de contactos
 
         public BuscadorContactos()
         {
-            Handler = new ErrorHandler();
-            Service = new ContactosService(Handler);
+            Handler = new ErrorHandler(); // Inicializar manejador de errores
+            Service = new ContactosService(Handler); // Inicializar servicio de contactos
 
             InitializeComponent();
             LoadDatagrid(Service.GetContactos(string.Empty));
@@ -47,21 +47,24 @@ namespace Murray.Vistas.Contactos
             Reload();
         }
 
-        #region Private Methods
+        #region Métodos privados
 
+        // Método para actualizar la tabla
         private void Reload()
         {
-            LoadDatagrid(Service.GetContactos(LastQuery));
+            LoadDatagrid(Service.GetContactos(LastQuery)); // Cargar contactos
         }
 
+        // Método para mostrar el formulario de edición de contactos
         private void ShowEditor(int id)
         {
-            var editor = new EditorContactos();
+            var editor = new EditorContactos(); 
             editor.FormClosed += Editor_FormClosed;
             editor.LoadRecord(id);
             editor.ShowDialog();
         }
 
+        // Método que se ejecuta al cerrar el formulario de edición y que actualiza la tabla de contactos
         private void Editor_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
         {
             Reload();
@@ -70,3 +73,4 @@ namespace Murray.Vistas.Contactos
         #endregion
     }
 }
+

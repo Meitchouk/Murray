@@ -57,6 +57,10 @@ namespace Common.Util
 
                 if (message is null) //Si el mensaje es nulo, entonces crea uno nuevo usando el código como prefijo en Guion Bajo (_).
                     message = $"_{code}";
+                /*
+                El prefijo de guion bajo se utiliza como una convención para indicar que el mensaje correspondiente no se encontró en el objeto 
+                ResourceManager y que se está utilizando un mensaje predeterminado en su lugar. 
+                */
 
                 builder.AppendLine(message); //Agrega el mensaje al StringBuilder usando la operación AppendLine()
             }

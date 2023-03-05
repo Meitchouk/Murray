@@ -30,7 +30,11 @@ namespace Murray.Vistas.Contactos
         }
 
         #region Public Methods
-
+        
+        /// <summary>
+        ///     Carga un registro determinado en el formulario de edición
+        /// </summary>
+        /// <param name="id">Id del contacto</param>
         public void LoadRecord(int id)
         {
             var isNew = id.Equals(default);
@@ -54,7 +58,10 @@ namespace Murray.Vistas.Contactos
         #endregion
 
         #region Private Methods
-
+        
+        /// <summary>
+        ///     Actualiza el objeto Record con los valores ingresados por el usuario
+        /// </summary>
         private void ApplyChanges()
         {
             if (Record is null)
@@ -73,11 +80,17 @@ namespace Murray.Vistas.Contactos
 
         #endregion
 
+        /// <summary>
+        ///     Acción output de cerrar ventana.
+        /// </summary>
         private void Salir(object sender, EventArgs args)
         {
             Close();
         }
 
+        /// <summary>
+        ///     Acción output del botón Agregar. Guarda el registro creado o editado y cierra la ventana
+        /// </summary>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             ApplyChanges();

@@ -17,22 +17,30 @@ namespace Murray.Services.Common
         #endregion
 
         /// <summary>
-        ///     Constructor
+        ///     Constructor de la clase Location
         /// </summary>
+        /// <param name="handler">Manejador del error</param>
         public Location(ErrorHandler handler) : base(handler)
         {
+            //Inicializa el objeto DepartamentosDao con una instancia apropiada de IDepartamentoDao utilizando la fábrica DaoFactory 
             DepartamentosDao = DaoFactory.Get<IDepartamentoDao>(handler);
         }
 
+        /// <summary>
+        /// Metodo que obtiene los departamentos desde DepartamentosDAO.
+        /// </summary>
         public void GetDepartamentos()
         {
             DepartamentosDao.Read();
         }
 
-        /// <inheritdoc cref="IDisposable.Dispose"/>
+        /// <summary>
+        /// Libera los recursos no administrados utilizados por Location y, opcionalmente, libera los recursos administrados.
+        /// </summary>
         public override void Dispose()
         {
             Handler.Clear();
         }
     }
 }
+
