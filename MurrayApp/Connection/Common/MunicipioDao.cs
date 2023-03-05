@@ -9,13 +9,16 @@ using System.Linq;
 
 namespace Connection.Common
 {
-    internal class MunicipioDao : BaseDao<Municipio>, IMunicipioDao
+    //Clase interna que hereda de la clase BaseDao y la interfaz IMunicipioDao.
+    internal class MunicipioDao : BaseDao<Municipio>, IMunicipioDao 
     {
         #region Constructor
 
         /// <summary>
-        ///     Constructor por defecto
+        ///     Constructor por defecto.
         /// </summary>
+        /// <param name="connectionString">Cadena de conexión a la base de datos.</param>
+        /// <param name="handler">Manejador de errores personalizado.</param>
         public MunicipioDao(string connectionString, ErrorHandler handler) : base(connectionString, handler)
         {
         }
@@ -23,6 +26,8 @@ namespace Connection.Common
         #endregion
 
         #region Public Methods
+        
+        //Implementación del método Create definido en la interfaz IDao<T>.
         /// <inheritdoc cref="IDao{TModel}.Create(TModel)"/>/>
         public override Municipio Create(Municipio model)
         {
@@ -36,7 +41,8 @@ namespace Connection.Common
 
             }).FirstOrDefault() ?? new Municipio();
         }
-
+        
+        //Implementación del método Delete definido en la interfaz IDao<T>.
         /// <inheritdoc cref="IDao{TModel}.Delete(int)"/>
         public override Municipio Delete(int id)
         {
@@ -46,13 +52,15 @@ namespace Connection.Common
 
             }).FirstOrDefault() ?? new Municipio();
         }
-
+        
+        //Implementación del método GetByDepartamento definido en la interfaz IMunicipioDao.
         /// <inheritdoc cref="IMunicipioDao.Read(string)"/>
         public IEnumerable<Municipio> GetByDepartamento(int departamento)
         {
             return GetByDepartamento(departamento, string.Empty);
         }
 
+        //Implementación del método GetByDepartamento definido en la interfaz IMunicipioDao.
         /// <inheritdoc cref="IMunicipioDao.Read(string)"/>
         public IEnumerable<Municipio> GetByDepartamento(int departamento, string value)
         {
@@ -62,7 +70,8 @@ namespace Connection.Common
                 ["Nombre"] = value
             });
         }
-
+       
+        //Implementación del método GetById definido en la interfaz IMunicipioDao.
         /// <inheritdoc cref="IMunicipioDao.Read(string)"/>
         public Municipio GetById(int id)
         {
@@ -72,7 +81,8 @@ namespace Connection.Common
 
             }).FirstOrDefault() ?? new Municipio();
         }
-
+       
+        //Implementación del método Read definido en la interfaz IMunicipioDao.
         /// <inheritdoc cref="IMunicipioDao.Read(string)"/>
         public IEnumerable<Municipio> Read(string value)
         {
@@ -81,13 +91,15 @@ namespace Connection.Common
                 ["Nombre"] = value
             });
         }
-
+        
+        //Implementación del método Read definido en la interfaz IDao<T>.
         /// <inheritdoc cref="IDao{TModel}.Read"/>
         public override IEnumerable<Municipio> Read()
         {
             return Read(string.Empty);
         }
-
+        
+        //Implementación del método Update definido en la interfaz IDao<T>.
         /// <inheritdoc cref="IDao{TModel}.Update(int, TModel)"/>
         public override Municipio Update(int id, Municipio model)
         {
@@ -106,6 +118,7 @@ namespace Connection.Common
 
         #region Private Methods
 
+        //Valida si el modelo es válido y no contiene errores.
         private bool Validate(Municipio model, Operation operation)
         {
             if (Validations.Validate(model, Handler, operation))
@@ -120,3 +133,4 @@ namespace Connection.Common
         #endregion
     }
 }
+

@@ -11,7 +11,7 @@ namespace Connection.Sale
         #region Constructor
 
         /// <summary>
-        ///     Constructor por defecto
+        /// Constructor que recibe el string de conexión a la BD y un ErrorHandler.
         /// </summary>
         public ClienteJdao(string connectionString, ErrorHandler handler) : base(connectionString, handler)
         {
@@ -50,3 +50,4 @@ namespace Connection.Sale
         }
     }
 }
+

@@ -16,21 +16,21 @@ using System.Collections.Generic;
 namespace Connection
 {
     /// <summary>
-    ///     Fabrica de DAO
+    ///     Fabrica de DAO (Data Access Objects)
     /// </summary>
     public static class Factory
     {
-        #region Private Fields
+        #region Campos Privados
 
         /// <summary>
-        ///     Mapping de interfaces con las implementaciones de los DAO's
+        ///     Mapeo de interfaces con la implementación de los DAO's.
         /// </summary>
         private static readonly IDictionary<Type, Type> Dao = new Dictionary<Type, Type>
         {
-            // Identity
+            // Identidad
             [typeof(IUsuarioDao)] = typeof(UsuarioDao),
 
-            // Common
+            // Común
             [typeof(ICategoriaDao)] = typeof(CategoriaDao),
             [typeof(IContactoDao)] = typeof(ContactoDao),
             [typeof(IDepartamentoDao)] = typeof(DepartamentoDao),
@@ -38,12 +38,12 @@ namespace Connection
             [typeof(IMunicipioDao)] = typeof(MunicipioDao),
             [typeof(IProductoDao)] = typeof(ProductoDao),
 
-            // Sale
+            // Venta
             [typeof(IClienteDao)] = typeof(ClienteDao),
             [typeof(IVentaDao)] = typeof(VentaDao),
             [typeof(IDetalleVentaDao)] = typeof(DetalleVentaDao),
 
-            // Shopping
+            // Compra
             [typeof(IProveedorDao)] = typeof(ProveedorDao),
             [typeof(ICompraDao)] = typeof(CompraDao),
             [typeof(IDetalleCompraDao)] = typeof(DetalleCompraDao)
@@ -52,24 +52,29 @@ namespace Connection
         #endregion
 
         /// <summary>
-        ///     Realiza la invocacion de un DAO con base al mapping ya configurado
+        ///     Realiza la invocación de un DAO en base al mapeo ya configurado.
         /// </summary>
         /// <typeparam name="TDao">
-        ///     Tipo del DAO a invocar
+        ///     Tipo del DAO a invocar.
         /// </typeparam>
         /// <param name="connectionString">
-        ///     Cadena de conexion a la base de datos
+        ///     Cadena de conexión para la base de datos.
         /// </param>
         public static TDao Invoke<TDao>(string connectionString, ErrorHandler handler)
         {
+            // Verifica si el tipo de DAO se encuentra registrado en el mapeo "Dao"
             if (!Dao.TryGetValue(typeof(TDao), out var daoType))
                 throw new ArgumentException("El tipo de DAO a invocar no se encuentra mapeado");
-
+        
+            // Obtiene el constructor que recibe como parámetro una cadena de conexión y un manejador de errores
             var constructor = daoType.GetConstructor(new Type[] { typeof(string), typeof(ErrorHandler) });
+            // Valida si existe un constructor configurado que considere la cadena de conexión
             if (constructor is null)
-                throw new ArgumentNullException("El DAO a invocar no tiene configurado un constuctor que considere la cadena de conexion");
-
+                throw new ArgumentNullException("El DAO a invocar no tiene configurado un constructor que considere la cadena de conexión");
+        
+            // Retorna una nueva instancia del DAO especificado
             return (TDao)constructor.Invoke(new object[] { connectionString, handler });
         }
+        
     }
 }

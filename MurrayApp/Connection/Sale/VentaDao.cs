@@ -9,7 +9,6 @@ using System.Linq;
 
 namespace Connection.Sale
 {
-
     internal class VentaDao : BaseDao<Venta>, IVentaDao
     {
         #region Constructor
@@ -24,6 +23,7 @@ namespace Connection.Sale
         #endregion
 
         /// <inheritdoc cref="IDao{TModel}.Create(TModel)"/>/>
+        // Crear una nueva venta.
         public override Venta Create(Venta model)
         {
             if (Validate(model, Operation.CREATE))
@@ -39,6 +39,7 @@ namespace Connection.Sale
         }
 
         /// <inheritdoc cref="IDao{TModel}.Delete(int)"/>
+        // Eliminar una venta existente dado su Id.
         public override Venta Delete(int id)
         {
             return Read(StoredProcedures.VentaDelete, new Dictionary<string, object>
@@ -48,7 +49,8 @@ namespace Connection.Sale
             }).FirstOrDefault() ?? new Venta();
         }
 
-        /// <inheritdoc cref="IVentaDao.GetById(int)"/>
+         /// <inheritdoc cref="IVentaDao.GetById(int)"/>
+        // Obtener información de una venta existente dado su Id.
         public Venta GetById(int id)
         {
             return Read(StoredProcedures.VentaGet, new Dictionary<string, object>
@@ -59,12 +61,14 @@ namespace Connection.Sale
         }
 
         /// <inheritdoc cref="IDao{TModel}.Read"/>
+        // Obtener la información de todas las ventas existentes.
         public override IEnumerable<Venta> Read()
         {
             return Read(StoredProcedures.VentaGet);
         }
 
         /// <inheritdoc cref="IVentaDao.Read(string)"/>
+        // Obtener la información de todas las ventas existentes que cumplan con ciertas condiciones definidas en una consulta personalizada.
         public IEnumerable<Venta> Read(string query)
         {
             return Read(StoredProcedures.VentaGet, new Dictionary<string, object>
@@ -74,6 +78,7 @@ namespace Connection.Sale
         }
 
         /// <inheritdoc cref="IDao{TModel}.Update(int, TModel)"/>
+        // Actualizar la información de una venta existente.
         public override Venta Update(int id, Venta model)
         {
             if (Validate(model, Operation.UPDATE))

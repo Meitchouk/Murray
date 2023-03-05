@@ -23,12 +23,14 @@ namespace Connection.Sale
 
         #endregion
 
-        /// <inheritdoc cref="IDao{TModel}.Create(TModel)"/>/>
+        /// <inheritdoc cref="IDao{TModel}.Create(TModel)" />
         public override Cliente Create(Cliente model)
         {
+            //Valida el modelo antes de insertarlo
             if (Validate(model, Operation.CREATE))
                 return new Cliente();
 
+            //Inserta el nuevo registro y lo retorna
             return Read(StoredProcedures.ClienteCreate, new Dictionary<string, object>
             {
                 ["IdContacto"] = model.IdContacto
@@ -36,9 +38,10 @@ namespace Connection.Sale
             }).FirstOrDefault() ?? new Cliente();
         }
 
-        /// <inheritdoc cref="IDao{TModel}.Delete(int)"/>
+        /// <inheritdoc cref="IDao{TModel}.Delete(int)" />
         public override Cliente Delete(int id)
-        {
+        {   
+            //Elimina un registro por su id y lo retorna
             return Read(StoredProcedures.ClienteDelete, new Dictionary<string, object>
             {
                 ["Id"] = id
@@ -46,9 +49,10 @@ namespace Connection.Sale
             }).FirstOrDefault() ?? new Cliente();
         }
 
-        /// <inheritdoc cref="IClienteDao.GetById(int)"/>
+        /// <inheritdoc cref="IClienteDao.GetById(int)" />
         public Cliente GetById(int id)
         {
+            //Obtiene un cliente por su Id y lo retorna
             return Read(StoredProcedures.ClienteGet, new Dictionary<string, object>
             {
                 ["Id"] = id
@@ -56,9 +60,10 @@ namespace Connection.Sale
             }).FirstOrDefault() ?? new Cliente();
         }
 
-        /// <inheritdoc cref="IClienteDao.Read(bool, int)"/>
+        /// <inheritdoc cref="IClienteDao.Read(bool, int)" />
         public IEnumerable<Cliente> Read(bool estado, int idContacto)
         {
+            //Obtiene los clientes dada una condición "estado" e "idContacto"
             return Read(StoredProcedures.ClienteGet, new Dictionary<string, object>
             {
                 ["Estado"] = estado,
@@ -66,18 +71,21 @@ namespace Connection.Sale
             });
         }
 
-        /// <inheritdoc cref="IDao{TModel}.Read"/>
+        /// <inheritdoc cref="IDao{TModel}.Read" />
         public override IEnumerable<Cliente> Read()
-        {
+        {   
+            //Obtiene todos los clientes y los retorna
             return Read(StoredProcedures.ClienteGet);
         }
 
-        /// <inheritdoc cref="IDao{TModel}.Update(int, TModel)"/>
+        /// <inheritdoc cref="IDao{TModel}.Update(int, TModel)" />
         public override Cliente Update(int id, Cliente model)
-        {
+        {   
+            //Valida el modelo antes de actualizarlo
             if (Validate(model, Operation.UPDATE))
                 return new Cliente();
 
+            //Actualiza un registro por su id y lo retorna
             return Read(StoredProcedures.ClienteUpdate, new Dictionary<string, object>
             {
                 ["Id"] = id,
@@ -88,14 +96,17 @@ namespace Connection.Sale
 
         #region Private Methods
 
+        //Método privado utilizado para validar un modelo
         private bool Validate(Cliente model, Operation operation)
-        {
+        {   
+            //Realiza validaciones en el modelo y lo relacionado con este
             if (Validations.Validate(model, Handler, operation))
                 return false;
 
             return Handler.HasError();
-        }
+        }   
 
         #endregion
     }
 }
+
